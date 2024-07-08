@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+:root {
+    --color1: #96CDFF; /*Light Sky Blue*/
+    --color2: #3A4F41; /*Feldgrau*/
+    --color3: #FF8811; /*UT orange*/
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: var(--color1);
+    font-family: Arial, Helvetica, sans-serif; /*Modify*/
+}
+
+header h1 {
+    margin: 40px;
+    text-align: center;
+    font-size: 3em;
+}
+
+main {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+section {
+    background-color: #ffffff;
+    height: 70vh;
+    width: 45vw;
+    border-radius: 20px;
+    box-shadow: 1px solid black;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    width: 100%;
+    text-align: center;
+
+    position: fixed; /* fixed below*/
+    bottom: 0;
+}
