@@ -83,7 +83,10 @@ span.number {
 
 footer {
     background-color: #000000;
-    color: #ffffff;
     width: 100%;
+}
+
+footer p {
+    color: #ffffff;
     text-align: center;
 }
