@@ -36,6 +36,7 @@ main:after { /*sticky footer*/
 
 section {
     background-color: #ffffff;
+    min-height: 200px;
     margin: auto;
     padding: 20px;
     width: 45vw;
@@ -43,13 +44,46 @@ section {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.300);
 }
 
-h2, h3 {
+div.term_gpa {
+    padding: 20px;
+}
+
+h2 {
+    color: var(--color2);  
+    font-size: 2em; 
+}
+
+h3 {
     color: var(--color2);
+    font-size: 1.5em;
+}
+
+p {
+    padding: 5px;
+    color: var(--color3);
+    font-size: 1.2em;
+}
+
+label {
+    padding-left: 25px;
+}
+
+input {
+    height: 1.5em;
+    width: 120px;
+}
+
+select {
+    height: 1.5em;
+}
+
+span.number {
+    color: #000000;
 }
 
 footer {
-    background-color: black;
-    color: white;
+    background-color: #000000;
+    color: #ffffff;
     width: 100%;
     text-align: center;
 }
