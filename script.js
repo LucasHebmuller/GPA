@@ -34,12 +34,10 @@ function enterGrade() {
         termPoints[termCount] += (0.7 * credits)
     else if(grade == "F")
         termPoints[termCount] += (0 * credits)
-
-
 }
 
 function calculateTermGpa() {
-    return termPoints[termCount] / termCredits[termCount]
+   return termPoints[termCount] / termCredits[termCount]
 }
 
 function calculateOverallGpa() {
@@ -53,7 +51,6 @@ function calculateOverallGpa() {
 
     return allPoints / allCredits
 }
-
 
 let overallContainer = document.querySelector('div#cumulative_gpa h2')
 overallContainer.innerHTML += `<span class="number">${overallGpa}</span>`
