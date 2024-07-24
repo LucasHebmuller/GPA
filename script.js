@@ -1,3 +1,11 @@
+let semesterCount = 1
+let courseCount = [4] // course for each semester
+
+function calculateSemesterGPA(form) {
+    const grades = form.querySelectorAll('.igrade')
+}
+
+/*
 let overallGpa = 0
 let termCount = 0
 let termGpa = [0]
@@ -57,3 +65,4 @@ overallContainer.innerHTML += `<span class="number">${overallGpa}</span>`
 
 let termContainer = document.querySelector('div.term_gpa h3')
 termContainer.innerHTML += `<span class="number">${termGpa[termCount]}</span>`
+*/
