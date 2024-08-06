@@ -1,18 +1,21 @@
-let semesterCount = 1
-let courseCount = [4] // course for each semester
+let semesterCount = 1;
 
-function calculateSemesterGPA() {
-    // Select all elements with the class 'igrade'
-    const grades = document.querySelectorAll('.igrade');
+function calculateSemesterGPA(semesterIndex) {
+    const semesterForms = document.querySelectorAll('.semester_gpa');
+    const semesterForm = semesterForms[semesterIndex];
+    const gradeElements = semesterForm.querySelectorAll('.grade-select');
+    const creditElements = semesterForm.querySelectorAll('.credits-input');
+
     let totalPoints = 0;
     let totalCredits = 0;
 
-    grades.forEach(grade => {
-        const value = grade.value;
-        const credits = parseFloat(grade.getAttribute('icredits'));
-        if (value && credits) {
+    gradeElements.forEach((gradeElement, index) => {
+        const grade = gradeElement.value;
+        const credits = parseFloat(creditElements[index].value);
+
+        if (!isNaN(credits) && credits > 0 && grade !== '-') {
             let gradePoints = 0;
-            switch(value) {
+            switch(grade) {
                 case 'A':
                     gradePoints = 4.0;
                     break;
@@ -55,11 +58,77 @@ function calculateSemesterGPA() {
         }
     });
 
-    // Calculate the semester GPA
-    const semesterGPA = totalPoints / totalCredits;
-
-    // Display the semester GPA in the designated container
-    let semesterContainer = document.querySelector('.semester_gpa h3');
-    semesterContainer.innerHTML += `<span class="number">${semesterGPA.toFixed(2)}</span>`;
+    const semesterGPA = totalCredits > 0 ? (totalPoints / totalCredits).toFixed(2) : 0;
+    let semesterContainer = document.querySelectorAll('.semester-container')[semesterIndex];
+    let gpaHeader = semesterContainer.querySelector('h3');
+    gpaHeader.innerHTML = `Semester ${semesterIndex + 1} GPA: <span class="number">${semesterGPA}</span>`;
 }
 
+function addCourse(semesterIndex) {
+    const semesterContainers = document.querySelectorAll('.semester-container');
+    const semesterForm = semesterContainers[semesterIndex].querySelector('.semester_gpa');
+
+    const newCourse = document.createElement('div');
+    newCourse.className = 'course';
+
+    newCourse.innerHTML = `
+        <label for="icourse">Course: </label>
+        <input type="text" name="course" class="course-input" placeholder="Course name">
+
+        <label for="igrade">Grade: </label>
+        <select name="grade" class="grade-select">
+            <option value="-" selected></option>
+            <option value="A">A</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B">B</option>
+            <option value="B-">B-</option>
+            <option value="C+">C+</option>
+            <option value="C">C</option>
+            <option value="C-">C-</option>
+            <option value="D+">D+</option>
+            <option value="D">D</option>
+            <option value="D-">D-</option>
+            <option value="F">F</option>
+        </select>
+
+        <label for="icredits">Credits: </label>
+        <input type="number" name="credits" class="credits-input">
+    `;
+
+    semesterForm.appendChild(newCourse);
+}
+
+function addSemester() {
+    semesterCount++;
+    const semestersContainer = document.getElementById('semestersContainer');
+
+    const semesterContainer = document.createElement('div');
+    semesterContainer.className = 'semester-container';
+
+    const newSemester = document.createElement('form');
+    newSemester.className = 'semester_gpa';
+    newSemester.innerHTML = `
+        <h3>Semester ${semesterCount} GPA: </h3>
+    `;
+
+    semesterContainer.appendChild(newSemester);
+    semestersContainer.appendChild(semesterContainer);
+
+    // Add four initial courses
+    for (let i = 0; i < 4; i++) {
+        addCourse(semesterCount - 1);
+    }
+
+    const addCourseButton = document.createElement('input');
+    addCourseButton.type = 'button';
+    addCourseButton.value = 'Add Course';
+    addCourseButton.onclick = () => addCourse(semesterCount - 1);
+    semesterContainer.appendChild(addCourseButton);
+
+    const calculateGPAButton = document.createElement('input');
+    calculateGPAButton.type = 'button';
+    calculateGPAButton.value = 'Calculate GPA';
+    calculateGPAButton.onclick = () => calculateSemesterGPA(semesterCount - 1);
+    semesterContainer.appendChild(calculateGPAButton);
+}
