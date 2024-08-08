@@ -91,3 +91,21 @@ footer p {
     text-align: center;
     font-size: .9em;
 }
+
+input[type="button"] {
+    height: 40px;
+    width: 160px;
+    margin-left: 25px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    background-color: var(--color1);
+}
+
+input[type="button"]:hover {
+    background-color: #b6dafc;
+    cursor: pointer;
+}
+
+select:hover {
+    cursor: pointer;
+}
